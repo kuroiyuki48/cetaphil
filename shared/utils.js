@@ -24,7 +24,7 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("../assets/logo_bj (1).glb", (gltf) => {
+    this.loader.load("logo_bj (1).glb", (gltf) => {
       this.add(gltf.scene);
     })
 
@@ -33,7 +33,7 @@ class Reticle extends THREE.Object3D {
   }
 }
 
-window.gltfLoader.load("../assets/logo_bj", function(gltf) {
+window.gltfLoader.load("logo_bj", function(gltf) {
   const logo = gltf.scene.children.find(c => c.name === 'logo_bj')
   logo.castShadow = true;
   window.logo_bj = gltf.scene;
