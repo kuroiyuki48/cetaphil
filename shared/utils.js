@@ -24,19 +24,18 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("logo_bj (1).glb", (gltf) => {
+    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
       this.add(gltf.scene);
     })
 
     this.visible = false;
-    // this.animate();
   }
 }
 
-window.gltfLoader.load("logo_bj", function(gltf) {
-  const logo = gltf.scene.children.find(c => c.name === 'logo_bj')
-  logo.castShadow = true;
-  window.logo_bj = gltf.scene;
+window.gltfLoader.load("https://immersive-web.github.io/webxr-samples/blob/main/media/gltf/camp/camp.gltf", function(gltf) {
+  const campground = gltf.scene.children.find(c => c.name === 'campground')
+  campground.castShadow = true;
+  window.camp = gltf.scene;
 });
 
 
@@ -129,7 +128,3 @@ window.DemoUtils = {
 function onNoXRDevice() {
   document.body.classList.add('unsupported');
 }
-// function animate(){
-//   requestAnimationFrame( this.animate.bind(this) );  
-//   this.render();
-// }
