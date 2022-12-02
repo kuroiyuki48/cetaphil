@@ -24,15 +24,16 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
+    this.loader.load("../assets/logo_bj (1).glb", (gltf) => {
       this.add(gltf.scene);
     })
 
     this.visible = false;
+    this.animate();
   }
 }
 
-window.gltfLoader.load("../assets/logo_bj.glb", function(gltf) {
+window.gltfLoader.load("../assets/logo_bj (1).glb", function(gltf) {
   const logo = gltf.scene.children.find(c => c.name === 'logo_bj')
   logo.castShadow = true;
   window.logo_bj = gltf.scene;
@@ -127,4 +128,8 @@ window.DemoUtils = {
  */
 function onNoXRDevice() {
   document.body.classList.add('unsupported');
+}
+function animate(){
+  requestAnimationFrame( this.animate.bind(this) );  
+  this.render();
 }
