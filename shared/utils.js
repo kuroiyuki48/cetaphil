@@ -21,27 +21,27 @@
 class Reticle extends THREE.Object3D {
   constructor() {
     super();
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.01,
       1000
       );
       
-      var renderer = new THREE.WebGLRenderer();
+      this.renderer = new THREE.WebGLRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
       
-      var loader = new GLTFLoader();
-      var obj;
+      this.loader = new GLTFLoader();
+      this.obj;
       loader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj_2.glb", (gltf) => {
-      obj = gltf.scene.scale.multiplyScalar( 2 );
-      scene.add(gltf.scene);
+      obj = gltf.scene;
+      this.scene.add(gltf.scene);
     })
     
     scene.background = new THREE.Color(0xffffff);
-      var light = new THREE.HemisphereLight(0xffffff, 0x000000, 10);
+      this.light = new THREE.HemisphereLight(0xffffff, 0x444444);
       scene.add(light);
       camera.position.set(0, 10, 10);
       function animate() {
