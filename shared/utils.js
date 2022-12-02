@@ -24,7 +24,7 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj.glb", (gltf) => {
+    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
       this.add(gltf.scene);
     })
 
@@ -32,11 +32,9 @@ class Reticle extends THREE.Object3D {
   }
 }
 
-// window.gltfLoader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj_2.glb", function(gltf) {
-//   const flower = gltf.scene.children.find(c => c.name === 'logo_bj_2')
-//   flower.castShadow = true;
-//   window.logo_bj_2 = gltf.scene;
-// });
+window.gltfLoader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj_2.glb", function(gltf) {
+  window.logo_bj_2 = gltf.scene;
+});
 
 
 window.DemoUtils = {
