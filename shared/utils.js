@@ -29,15 +29,15 @@ class Reticle extends THREE.Object3D {
     })
 
     this.visible = false;
-    this.animate();
+    // this.animate();
   }
 }
 
-// window.gltfLoader.load("../assets/logo_bj (1).glb", function(gltf) {
-//   const logo = gltf.scene.children.find(c => c.name === 'logo_bj')
-//   logo.castShadow = true;
-//   window.logo_bj = gltf.scene;
-// });
+window.gltfLoader.load("../assets/logo_bj", function(gltf) {
+  const logo = gltf.scene.children.find(c => c.name === 'logo_bj')
+  logo.castShadow = true;
+  window.logo_bj = gltf.scene;
+});
 
 
 window.DemoUtils = {
@@ -129,7 +129,7 @@ window.DemoUtils = {
 function onNoXRDevice() {
   document.body.classList.add('unsupported');
 }
-function animate(){
-  requestAnimationFrame( this.animate.bind(this) );  
-  this.render();
-}
+// function animate(){
+//   requestAnimationFrame( this.animate.bind(this) );  
+//   this.render();
+// }
