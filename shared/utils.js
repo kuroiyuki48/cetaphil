@@ -24,7 +24,7 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj_2.glb", (gltf) => {
+    this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj.glb", (gltf) => {
       this.add(gltf.scene);
     })
 
