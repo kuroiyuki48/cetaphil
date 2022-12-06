@@ -32,10 +32,8 @@ class Reticle extends THREE.Object3D {
   }
 }
 
-window.gltfLoader.load("/assets/bj_logo.gltf", function(gltf) {
-  const flower = gltf.scene.children.find(c => c.name === 'bj_logo')
-  flower.castShadow = true;
-  window.sunflower = gltf.scene;
+window.gltfLoader.load("https://kuroiyuki48.github.io/cetaphil/assets/logo_bj_2.glb", function(gltf) {
+  window.logo_bj_2 = gltf.scene;
 });
 
 
