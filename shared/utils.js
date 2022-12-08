@@ -24,16 +24,16 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.camera = new THREE.PerspectiveCamera(
-      50, window.innerWidth / window.innerHeight, 0.1, 500
-    );
-    this.light = new THREE.AmbientLight(0xffffff, 1);
-    this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
-    this.planeGeometry = new THREE.PlaneGeometry(2000, 2000);
-    this.shadowMesh = new THREE.Mesh(planeGeometry, new THREE.ShadowMaterial({
-      color: 0x111111,
-      opacity: 0.2,
-    }));
+    // this.camera = new THREE.PerspectiveCamera(
+    //   50, window.innerWidth / window.innerHeight, 0.1, 500
+    // );
+    // this.light = new THREE.AmbientLight(0xffffff, 1);
+    // this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
+    // this.planeGeometry = new THREE.PlaneGeometry(2000, 2000);
+    // this.shadowMesh = new THREE.Mesh(planeGeometry, new THREE.ShadowMaterial({
+    //   color: 0x111111,
+    //   opacity: 0.2,
+    // }));
   
     
     this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb", (gltf) => {
