@@ -27,7 +27,7 @@
 
 			scene = new THREE.Scene();
 
-			camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.01, 40);
+			camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 40);
 
 			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 			renderer.setPixelRatio(window.devicePixelRatio);
@@ -40,7 +40,7 @@
 			scene.add(light);
 
       // Add a GLTF model to the scene
-      const modelUrl = 'https://kuroiyuki48.github.io/cetaphil/assets/bj_logo.glb';
+      const modelUrl = 'https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_8.glb';
       
 			loader = new THREE.GLTFLoader();
 			loader.load(
