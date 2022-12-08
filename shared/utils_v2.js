@@ -1,3 +1,6 @@
+
+window.gltfLoader = new THREE.GLTFLoader();
+
 class Logo extends THREE.Object3D {
   constructor() {
     super();
