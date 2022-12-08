@@ -20,6 +20,7 @@ a:hover {
 button {
 	cursor: pointer;
 	text-transform: uppercase;
+  color: #000 !important;
 }
 
 canvas {
