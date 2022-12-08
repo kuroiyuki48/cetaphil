@@ -39,10 +39,6 @@ class Reticle extends THREE.Object3D {
     this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb", (gltf) => {
       var scene = gltf.scene;
       this.add(scene);
-      this.add(scene.camera);
-      this.add(scene.shadowMesh);
-      this.add(scene.light);
-      this.add(scene.directionalLight);
     })
 
     this.visible = false;
