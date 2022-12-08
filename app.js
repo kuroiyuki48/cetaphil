@@ -92,11 +92,11 @@ class App {
     this.xrSession.addEventListener("select", this.onSelect);
   }
 
-  /** Place a sunflower when the screen is tapped. */
+  /** Place a logo when the screen is tapped. */
   onSelect = () => {
-    if (window.sunflower) {
-      const clone = window.sunflower.clone();
-      clone.position.copy(this.reticle.position);
+    if (window.logo) {
+      const clone = window.logo.clone();
+      clone.position.copy(this.logo.position);
       this.scene.add(clone)
 
       const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
@@ -143,10 +143,10 @@ class App {
       if (hitTestResults.length > 0) {
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
-        // Update the reticle position
-        this.reticle.visible = true;
-        this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
-        this.reticle.updateMatrixWorld(true);
+        // Update the logo position
+        this.logo.visible = true;
+        this.logo.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+        this.logo.updateMatrixWorld(true);
       }
 
       // Render the scene with THREE.WebGLRenderer.
@@ -173,8 +173,8 @@ class App {
 
     // Initialize our demo scene.
     this.scene = DemoUtils.createLitScene();
-    this.reticle = new Reticle();
-    this.scene.add(this.reticle);
+    this.logo = new Logo();
+    this.scene.add(this.logo);
 
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
