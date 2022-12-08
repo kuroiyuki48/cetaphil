@@ -22,31 +22,13 @@ window.gltfLoader = new THREE.GLTFLoader();
 class Reticle extends THREE.Object3D {
   constructor() {
     super();
-    var loader = new THREE.GLTFLoader();
-      // Load a glTF resource
-      loader.load(
-        // resource URL
-        'https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb',
-        // called when the resource is loaded
-        function ( gltf ) {
 
-          gltf.scene.position.setFromMatrixPosition( reticle.matrix );
-          model = gltf;
-          scene.add( model.scene );
+    this.loader = new THREE.GLTFLoader();
+    this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb", (gltf) => {
+      this.add(gltf.scene);
+    })
 
-          model.scene.addEventListener( "touchstart", handleTouchStart, false );
-          model.scene.addEventListener( "touchend", handleTouchEnd, false );
-          model.scene.addEventListener( "touchmove", handleTouchMove, false );
-      }
-    );
-    loader();
-
-    // this.loader = new THREE.GLTFLoader();
-    // this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb", (gltf) => {
-    //   this.add(gltf.scene);
-    // })
-
-    // this.visible = false;
+    this.visible = false;
   }
 }
 
