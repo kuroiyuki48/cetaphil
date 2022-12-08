@@ -1,39 +1,100 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building an augmented reality application with the WebXR Device API</title>
-    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- three.js -->
-    <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
-    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+<head>
+	<title>3D Model Animated</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
 
-    <link rel="stylesheet" type="text/css" href="https://kuroiyuki48.github.io/cetaphil/shared/app.css" />
-    <script src="https://kuroiyuki48.github.io/cetaphil/shared/utils_v2.js"></script>
-  </head>
-  <body>
-    <div id="enter-ar-info" class="mdc-card demo-card">
-      <h2>Augmented Reality with the WebXR Device API</h2>
-      <p>
-        This is an experiment using augmented reality features with the WebXR Device API.
-      </p>
+<body>
+	<script type="module">
+    import { ARButton } from 'https://unpkg.com/three@0.126.0/examples/jsm/webxr/ARButton.js';
+    
+		let camera, scene, renderer;
+		let loader;
+    let model;
 
-      <!-- Starting an immersive WebXR session requires user interaction. Start the WebXR experience with a simple button. -->
-      <a id="enter-ar" class="mdc-button mdc-button--raised mdc-button--accent">
-        Start augmented reality
-      </a>
-    </div>
+		init();
+		animate();
 
-    <div id="unsupported-info" class="mdc-card demo-card">
-      <h2>Unsupported Browser</h2>
-      <p>
-        Your browser does not support AR features with WebXR.
-      </p>
-    </div>
-    <script src="https://kuroiyuki48.github.io/cetaphil/app.js"></script>
-    <div id="stabilization"></div>
-  </body>
+		function init() {
+			const container = document.createElement('div');
+			document.body.appendChild(container);
+
+			scene = new THREE.Scene();
+
+			camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 40);
+
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.xr.enabled = true; // we have to enable the renderer for webxr
+			container.appendChild(renderer.domElement);
+
+			var light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+			light.position.set(0.5, 1, 0.25);
+			scene.add(light);
+
+      // Add a GLTF model to the scene
+      const modelUrl = 'https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_6.glb';
+      
+			loader = new THREE.GLTFLoader();
+			loader.load(
+				modelUrl,
+				function (gltf) {
+          model = gltf.scene;
+          model.position.z = -10;
+					scene.add(model);
+          console.log("Model added to scene");
+				},
+				function (xhr) {
+		      // console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
+	      },
+				function (error) {
+					console.error(error);
+				}
+			);
+
+			document.body.appendChild(ARButton.createButton(renderer));
+
+			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		function onWindowResize() {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
+
+		function animate() {
+			renderer.setAnimationLoop(render);
+		}
+
+		function render() {
+      rotateModel();
+			renderer.render(scene, camera);
+		}
+    
+    let degrees = 0; // the angle to rotate our model
+    
+    function rotateModel() {
+      if (model !== undefined) {
+        // valid degrees range from 0-360
+        // Once over 360 three.js will treat 360 as 0, 361 as 1, 362 as 2 and so on
+        degrees = degrees + 0.2; 
+        model.rotation.y = THREE.Math.degToRad(degrees); // we convert degrees to a radian value
+        
+        // more math utility functions can be found here:
+        // https://threejs.org/docs/#api/en/math/MathUtils
+      }
+    }
+
+	</script>
+</body>
+
 </html>
