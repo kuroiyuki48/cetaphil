@@ -6,7 +6,7 @@ class Logo extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
+    this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_6.glb", (gltf) => {
       this.add(gltf.scene);
     })
 
