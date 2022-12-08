@@ -24,6 +24,11 @@ class Reticle extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
+    this.camera = new THREE.PerspectiveCamera(
+      50, window.innerWidth / window.innerHeight, 0.1, 500
+    );
+  
+    this.camera.position.set(0, 0.25, 0.75);
     this.loader.load("https://kuroiyuki48.github.io/cetaphil/assets/bj_logo_5.glb", (gltf) => {
       this.add(gltf.scene);
     })
